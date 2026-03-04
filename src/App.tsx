@@ -2787,7 +2787,7 @@ const HomeTab = ({
             overflowX: 'auto',
             paddingBottom: 16,
             marginBottom: 8,
-            snapType: 'x mandatory',
+            scrollSnapType: 'x mandatory',
           }}
         >
           {NEWS.map((n, i) => (
