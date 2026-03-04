@@ -4182,7 +4182,10 @@ export default function App() {
     <div
       style={{
         height: '100dvh',
-        width: '100vw',
+        width: '100%',
+        maxWidth: 480,
+        margin: '0 auto',
+        boxShadow: '0 0 40px rgba(0,0,0,0.08)',
         background: T.card,
         display: 'flex',
         flexDirection: 'column',
@@ -4201,6 +4204,7 @@ export default function App() {
           overflow: hidden;
           overscroll-behavior: none;
           -webkit-touch-callout: none;
+          background: #eef0f4;
         }
         button { font-family: 'Poppins','Segoe UI',sans-serif; }
         input, textarea { font-family: 'Poppins','Segoe UI',sans-serif; }
