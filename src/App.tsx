@@ -4181,15 +4181,10 @@ export default function App() {
   return (
     <div
       style={{
-        minHeight: '100vh',
-        background: `radial-gradient(ellipse at 20% 20%, ${T.blue}55 0%, transparent 50%),
-                   radial-gradient(ellipse at 80% 80%, ${T.lav}44 0%, transparent 50%),
-                   radial-gradient(ellipse at 50% 50%, ${T.cream}33 0%, transparent 70%),
-                   #eef0f4`,
+        minHeight: '100dvh',
+        background: T.card,
         display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        padding: 20,
+        flexDirection: 'column',
         fontFamily: "'Poppins','Segoe UI',sans-serif",
       }}
     >
@@ -4197,99 +4192,36 @@ export default function App() {
          @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400&display=swap');
         * { box-sizing: border-box; margin: 0; padding: 0; text-align: left; }
         ::-webkit-scrollbar { width: 0; height: 0; }
+        body { margin: 0; padding: 0; }
         button { font-family: 'Poppins','Segoe UI',sans-serif; }
         input, textarea { font-family: 'Poppins','Segoe UI',sans-serif; }
         @keyframes fadeInUp { from { opacity:0; transform:translateY(8px) } to { opacity:1; transform:translateY(0) } }
       `}</style>
 
-      {/* Phone shell */}
+      {/* Main app container */}
       <div
         style={{
-          width: 393,
-          height: 790,
-          borderRadius: 46,
-          background: T.card,
-          boxShadow: `0 0 0 10px #1c1c1e, 0 0 0 14px #3d3d3f, 0 50px 120px rgba(0,0,0,0.35)`,
-          overflow: 'hidden',
+          flex: 1,
           display: 'flex',
           flexDirection: 'column',
           position: 'relative',
+          overflow: 'hidden',
         }}
       >
         {/* Splash screen */}
         {splash && <SplashScreen onDone={() => setSplash(false)} />}
 
-        {/* Status bar */}
-        <div
-          style={{
-            background: T.card,
-            padding: '15px 28px 6px',
-            display: 'flex',
-            justifyContent: 'space-between',
-            alignItems: 'center',
-            flexShrink: 0,
-          }}
-        >
-          <span
-            style={{
-              fontSize: 14,
-              fontWeight: 800,
-              color: T.plum,
-              letterSpacing: 0.3,
-            }}
-          >
-            09:41
-          </span>
-          <div
-            style={{
-              width: 100,
-              height: 18,
-              background: '#111',
-              borderRadius: 99,
-            }}
-          />
-          <div style={{ display: 'flex', gap: 5, alignItems: 'center' }}>
-            <svg width="17" height="13" viewBox="0 0 17 13">
-              <rect x="0" y="5" width="3" height="8" rx="1" fill={T.plum} />
-              <rect x="4.5" y="3" width="3" height="10" rx="1" fill={T.plum} />
-              <rect x="9" y="1" width="3" height="12" rx="1" fill={T.plum} />
-              <rect
-                x="13.5"
-                y="0"
-                width="3"
-                height="13"
-                rx="1"
-                fill={T.plum}
-                opacity="0.3"
-              />
-            </svg>
-            <svg width="18" height="13" viewBox="0 0 18 13">
-              <rect
-                x="1"
-                y="2"
-                width="13"
-                height="9"
-                rx="2"
-                fill="none"
-                stroke={T.plum}
-                strokeWidth="1.5"
-              />
-              <rect x="3" y="4" width="8" height="5" rx="1" fill={T.plum} />
-              <path d="M14 5.5v2.5a2 2 0 000-2.5z" fill={T.plum} />
-            </svg>
-          </div>
-        </div>
-
         {/* Header */}
         <div
           style={{
             background: T.card,
-            padding: '5px 18px 12px',
+            padding: '12px 18px',
             display: 'flex',
             justifyContent: 'space-between',
             alignItems: 'center',
             borderBottom: `1px solid ${T.border}`,
             flexShrink: 0,
+            paddingTop: 'env(safe-area-inset-top, 12px)'
           }}
         >
           <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
