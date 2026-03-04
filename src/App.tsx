@@ -4181,7 +4181,8 @@ export default function App() {
   return (
     <div
       style={{
-        minHeight: '100dvh',
+        height: '100dvh',
+        width: '100vw',
         background: T.card,
         display: 'flex',
         flexDirection: 'column',
@@ -4192,7 +4193,15 @@ export default function App() {
          @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400&display=swap');
         * { box-sizing: border-box; margin: 0; padding: 0; text-align: left; }
         ::-webkit-scrollbar { width: 0; height: 0; }
-        body { margin: 0; padding: 0; }
+        html, body {
+          margin: 0;
+          padding: 0;
+          height: 100%;
+          width: 100%;
+          overflow: hidden;
+          overscroll-behavior: none;
+          -webkit-touch-callout: none;
+        }
         button { font-family: 'Poppins','Segoe UI',sans-serif; }
         input, textarea { font-family: 'Poppins','Segoe UI',sans-serif; }
         @keyframes fadeInUp { from { opacity:0; transform:translateY(8px) } to { opacity:1; transform:translateY(0) } }
@@ -4299,7 +4308,7 @@ export default function App() {
               borderTop: `1px solid ${T.border}`,
               display: 'flex',
               flexShrink: 0,
-              paddingBottom: 10,
+              paddingBottom: 'calc(env(safe-area-inset-bottom, 0px) + 10px)',
               paddingTop: 2,
             }}
           >
