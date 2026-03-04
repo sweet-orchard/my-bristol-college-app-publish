@@ -4183,7 +4183,7 @@ export default function App() {
       style={{
         height: '100dvh',
         width: '100%',
-        maxWidth: 480,
+        maxWidth: 410,
         margin: '0 auto',
         boxShadow: '0 0 40px rgba(0,0,0,0.08)',
         background: T.card,
