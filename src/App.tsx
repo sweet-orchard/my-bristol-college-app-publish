@@ -27,7 +27,7 @@ const T = {
 // ─── SPLASH SCREEN ────────────────────────────────────────────────────────────
 const SplashScreen = ({ onDone }: { onDone: () => void }) => {
   useEffect(() => {
-    const t = setTimeout(onDone, 2200);
+    const t = setTimeout(onDone, 3500);
     return () => clearTimeout(t);
   }, [onDone]);
 
@@ -93,37 +93,34 @@ const SplashScreen = ({ onDone }: { onDone: () => void }) => {
           animation: 'splashLogo 0.7s cubic-bezier(.34,1.56,.64,1) 0.3s both',
         }}
       >
-        <svg width="90" height="90" viewBox="0 0 90 90" fill="none">
+        <svg width="110" height="110" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
           <defs>
-            <linearGradient id="sl1" x1="0%" y1="0%" x2="100%" y2="100%">
+            <linearGradient id="lc_top_s" x1="0%" y1="0%" x2="100%" y2="100%">
               <stop offset="0%" stopColor="#00d0fa" />
-              <stop offset="100%" stopColor="#73ffcc" />
+              <stop offset="100%" stopColor="#00e676" />
             </linearGradient>
-            <linearGradient id="sl2" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stopColor="#afa3f0" />
-              <stop offset="100%" stopColor="#ff0068" />
+
+            <linearGradient id="lc_bot_s" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stopColor="#7c4dff" />
+              <stop offset="100%" stopColor="#ff00aa" />
             </linearGradient>
           </defs>
-          <circle
-            cx="45"
-            cy="45"
-            r="43"
-            fill="rgba(255,255,255,0.08)"
-            stroke="rgba(255,255,255,0.15)"
-            strokeWidth="1.5"
-          />
+
+          {/* Upper ribbon */}
           <path
-            d="M48 14 C48 14 28 16 22 34 C16 52 28 62 40 65 C40 65 18 68 14 86 C10 104 26 76 44 76 C58 76 70 70 68 56 C66 44 52 65 52 65 C52 65 62 56 62 40 C62 24 56 14 48 14Z"
+            d="M42 6 C42 6 20 8 15 24 C10 40 20 50 32 52 C32 52 12 55 9 70 C6 85 20 78 36 78 C50 78 62 70 60 56 C58 44 46 52 46 52 C46 52 56 44 56 30 C56 16 50 6 42 6Z"
             fill="none"
-            stroke="url(#sl1)"
+            stroke="url(#lc_top_s)"
             strokeWidth="7"
             strokeLinecap="round"
           />
+
+          {/* Lower ribbon */}
           <path
-            d="M40 65 C18 68 14 86 12 96 C18 100 30 94 44 90 C60 86 72 74 70 60 C68 48 52 65 52 65"
+            d="M32 52 C12 55 9 70 6 82 C10 88 22 84 36 80 C52 76 64 66 62 54 C60 42 46 52 46 52"
             fill="none"
-            stroke="url(#sl2)"
-            strokeWidth="9"
+            stroke="url(#lc_bot_s)"
+            strokeWidth="8"
             strokeLinecap="round"
           />
         </svg>
@@ -133,43 +130,55 @@ const SplashScreen = ({ onDone }: { onDone: () => void }) => {
         style={{
           animation: 'splashLogo 0.7s cubic-bezier(.34,1.56,.64,1) 0.5s both',
           textAlign: 'center',
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
           marginTop: 18,
         }}
       >
         <div
           style={{
-            fontSize: 11,
-            fontWeight: 600,
-            color: 'rgba(255,255,255,0.5)',
-            letterSpacing: 3,
-            textTransform: 'uppercase',
-            marginBottom: 4,
+            textAlign: 'center',
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
           }}
         >
-          City of
-        </div>
-        <div
-          style={{
-            fontSize: 34,
-            fontWeight: 900,
-            color: '#fff',
-            letterSpacing: -1,
-            lineHeight: 1,
-            fontFamily: "'Poppins',sans-serif",
-          }}
-        >
-          Bristol
-        </div>
-        <div
-          style={{
-            fontSize: 22,
-            fontWeight: 800,
-            color: 'rgba(255,255,255,0.85)',
-            letterSpacing: -0.5,
-            fontFamily: "'Poppins',sans-serif",
-          }}
-        >
-          College
+          <div
+            style={{
+              fontSize: 11,
+              fontWeight: 600,
+              color: 'rgba(255,255,255,0.5)',
+              letterSpacing: 3,
+              textTransform: 'uppercase',
+              marginBottom: 4,
+            }}
+          >
+            City of
+          </div>
+          <div
+            style={{
+              fontSize: 34,
+              fontWeight: 900,
+              color: '#fff',
+              letterSpacing: -1,
+              lineHeight: 1,
+              fontFamily: "'Poppins',sans-serif",
+            }}
+          >
+            Bristol
+          </div>
+          <div
+            style={{
+              fontSize: 22,
+              fontWeight: 800,
+              color: 'rgba(255,255,255,0.85)',
+              letterSpacing: -0.5,
+              fontFamily: "'Poppins',sans-serif",
+            }}
+          >
+            College
+          </div>
         </div>
       </div>
       {/* Loading dots */}
@@ -227,17 +236,20 @@ const SplashScreen = ({ onDone }: { onDone: () => void }) => {
 
 // ─── LOGO COMPACT ─────────────────────────────────────────────────────────────
 const LogoCompact = () => (
-  <svg width="36" height="36" viewBox="0 0 80 80" fill="none">
+  <svg width="36" height="36" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
     <defs>
       <linearGradient id="lc_top" x1="0%" y1="0%" x2="100%" y2="100%">
         <stop offset="0%" stopColor="#00d0fa" />
         <stop offset="100%" stopColor="#00e676" />
       </linearGradient>
+
       <linearGradient id="lc_bot" x1="0%" y1="0%" x2="100%" y2="100%">
         <stop offset="0%" stopColor="#7c4dff" />
         <stop offset="100%" stopColor="#ff00aa" />
       </linearGradient>
     </defs>
+
+    {/* Upper ribbon */}
     <path
       d="M42 6 C42 6 20 8 15 24 C10 40 20 50 32 52 C32 52 12 55 9 70 C6 85 20 78 36 78 C50 78 62 70 60 56 C58 44 46 52 46 52 C46 52 56 44 56 30 C56 16 50 6 42 6Z"
       fill="none"
@@ -245,6 +257,8 @@ const LogoCompact = () => (
       strokeWidth="7"
       strokeLinecap="round"
     />
+
+    {/* Lower ribbon */}
     <path
       d="M32 52 C12 55 9 70 6 82 C10 88 22 84 36 80 C52 76 64 66 62 54 C60 42 46 52 46 52"
       fill="none"
@@ -834,7 +848,7 @@ const Ring = ({
     </svg>
     {label && (
       <div
-        style={{ fontSize: 11, fontWeight: 600, color: T.muted, marginTop: 4 }}
+        style={{ fontSize: 11, fontWeight: 600, color: T.muted, marginTop: 4, textAlign: 'center' }}
       >
         {label}
       </div>
@@ -981,6 +995,8 @@ const COURSES = [
     name: 'Digital Media Arts',
     desc: 'Design, photography and digital storytelling',
     progress: 72,
+    att: 88,
+    punc: 90,
     grad: `linear-gradient(138deg,#88c8ee 0%,#b8a4f0 100%)`,
     units: [
       {
@@ -1014,6 +1030,8 @@ const COURSES = [
     name: 'Web Development',
     desc: 'HTML, CSS, JavaScript and modern frameworks',
     progress: 58,
+    att: 83,
+    punc: 87,
     grad: `linear-gradient(138deg,#7fefd0 0%,#50c8f0 100%)`,
     units: [
       {
@@ -1039,6 +1057,8 @@ const COURSES = [
     name: 'Business Studies',
     desc: 'Marketing, finance and entrepreneurship',
     progress: 45,
+    att: 67,
+    punc: 71,
     grad: `linear-gradient(138deg,#f9c8df 0%,#e8b4f8 100%)`,
     units: [
       {
@@ -1149,62 +1169,92 @@ const ARTICLE_LIST = Object.entries(ARTICLES).map(([title, data]) => ({
   ...data,
 }));
 
-const TOOLS = [
-  {
-    name: 'Grammarly',
-    icon: 'pen' as IconName,
-    color: T.cyan,
-    tag: 'Writing',
-    desc: 'AI writing assistant. Improves grammar, style and clarity across all your written work.',
-  },
+type Tool = {
+  name: string;
+  logo?: string;
+  icon?: IconName;
+  tag: string;
+  desc: string;
+  longDesc?: string;
+  url: string;
+  benefits?: string[];
+  features?: string[];
+};
+
+
+const TOOLS: Tool[] = [
   {
     name: 'Office 365',
-    icon: 'layout' as IconName,
-    color: '#0078d4',
+    logo: '/logos/office 365 logo.jpeg',
     tag: 'Microsoft',
-    desc: 'Word, Excel, PowerPoint, Teams. Free for all Bristol College students via Microsoft Education.',
+    desc: 'Word, OneNote, Powerpoint, Excel and 1TB OneDrive storage.',
+    longDesc:
+      'A suite of collaborative IT services to help you enhance your learning experience.',
+    url: 'https://www.office.com',
+    benefits: [
+      'Create and edit Word, OneNote, Powerpoint and Excel from a browser',
+      '1TB of cloud storage through OneDrive',
+      'Install Office on 5 PCs/Macs, tablets, and phones',
+      'Always have the latest versions of your familiar Office apps',
+    ],
   },
   {
-    name: 'Google Drive',
-    icon: 'db' as IconName,
-    color: T.mint,
+    name: 'MS Teams',
+    logo: '/logos/teams logo.png',
+    tag: 'Microsoft',
+    desc: 'Chat with classmates and tutors, join meetings and submit work.',
+    longDesc:
+      'Use Microsoft Teams to chat to classmates and lecturers or receive and send in assignments.',
+    url: 'https://teams.microsoft.com',
+  },
+  {
+    name: 'Moodle',
+    logo: '/logos/moodle logo.jpeg',
+    tag: 'Learning',
+    desc: 'Access your course materials, ebooks and online activities.',
+    longDesc:
+      'Moodle is our Virtual Learning Environment where you can access course materials and activities. You’ll also find a wide range of ebooks, articles and other electronic resources.',
+    url: 'https://moodle.cityofbristol.ac.uk',
+  },
+  {
+    name: 'ProPortal',
+    logo: '/logos/proprtal logo.png',
+    tag: 'Portal',
+    desc: 'Check your ILP data, unit progress and assessment grades.',
+    longDesc:
+      'View your ILP data, unit and assessment grades online. You will need your college user ID and password to log in.',
+    url: 'https://proportal.cityofbristol.ac.uk',
+  },
+  {
+    name: 'F: Drive',
+    logo: '/logos/microsoft drive logo.jpeg',
     tag: 'Storage',
-    desc: '15GB cloud storage. Collaborate in real-time on documents with classmates and teachers.',
+    desc: 'Access your college "My Documents" storage from anywhere.',
+    longDesc: 'Access your "My Documents" (F: drive) from home.',
+    url: 'https://mydocuments.cityofbristol.ac.uk',
   },
   {
-    name: 'Moodle VLE',
-    icon: 'book' as IconName,
-    color: T.lav,
+    name: 'Student Hub',
+    logo: '/logos/student hub logo.png',
     tag: 'College',
-    desc: 'Access course materials, submit assignments and message tutors — your central learning hub.',
+    desc: 'Everything you need to know about college life and community.',
+    longDesc:
+      'The CoBC Student Hub is your one-stop shop for everything you need to know about City of Bristol College life and the inclusive community that surrounds us.',
+    url: 'https://studenthub.cityofbristol.ac.uk',
   },
   {
-    name: 'JSTOR',
-    icon: 'search' as IconName,
-    color: '#c8b800',
-    tag: 'Research',
-    desc: 'Peer-reviewed journals and academic papers. Essential for citations and deep research.',
+    name: 'Grammarly',
+    logo: '/logos/grammarly logo.png',
+    tag: 'Writing',
+    desc: 'AI writing assistant to improve your grammar and clarity.',
+    url: 'https://www.grammarly.com',
   },
   {
     name: 'Canva',
-    icon: 'star' as IconName,
-    color: T.peach,
+    logo: '/logos/canva logo.png',
     tag: 'Design',
-    desc: 'Design presentations, posters and social graphics. Free Pro account for students.',
-  },
-  {
-    name: 'OneDrive',
-    icon: 'db' as IconName,
-    color: '#0063b1',
-    tag: 'Microsoft',
-    desc: 'Microsoft cloud storage, integrated with Office 365. Access files from any device anywhere.',
-  },
-  {
-    name: 'Teams',
-    icon: 'users' as IconName,
-    color: '#5b5ea6',
-    tag: 'Microsoft',
-    desc: 'College communication platform. Chat, video call tutors, and collaborate on group work.',
+    desc: 'Create professional presentations, posters and social graphics.',
+    url: 'https://www.canva.com',
   },
 ];
 
@@ -1223,6 +1273,9 @@ const TAG_C: Record<string, string> = {
   Research: '#c8b800',
   Design: T.peach,
   Comms: T.lilac,
+  Learning: T.purple,
+  Portal: T.blue,
+  App: T.mint,
 };
 
 // ─── ABSENCE MODAL ────────────────────────────────────────────────────────────
@@ -1436,46 +1489,76 @@ const AbsenceModal = ({ onClose }: { onClose: () => void }) => {
     </div>
   );
 };
+type Notification = {
+  id: number;
+  i: IconName;
+  title: string;
+  msg: string;
+  time: string;
+  c: string;
+  unread: boolean;
+};
+
+const NOTIFS_DATA: Notification[] = [
+  {
+    id: 1,
+    i: 'file' as IconName,
+    title: 'Assignment Due',
+    msg: 'Graphic Design logo project due in 3 days',
+    time: '2h ago',
+    c: T.cyan,
+    unread: true,
+  },
+  {
+    id: 2,
+    i: 'cal' as IconName,
+    title: 'Timetable Change',
+    msg: 'Room change: JavaScript class moved to CGS 204',
+    time: '5h ago',
+    c: T.mint,
+    unread: true,
+  },
+  {
+    id: 3,
+    i: 'award' as IconName,
+    title: 'College Event',
+    msg: 'Student Union social event this Friday 5pm',
+    time: '1d ago',
+    c: T.lilac,
+    unread: true,
+  },
+  {
+    id: 4,
+    i: 'warn' as IconName,
+    title: 'Attendance Alert',
+    msg: 'Attendance in Finance is below 75%',
+    time: '2d ago',
+    c: T.pink,
+    unread: true,
+  },
+  {
+    id: 5,
+    i: 'users' as IconName,
+    title: 'Tutor Message',
+    msg: 'Ms. Johnson left feedback on your portfolio',
+    time: '3d ago',
+    c: T.lav,
+    unread: true,
+  },
+];
 
 // ─── NOTIFICATIONS PAGE ───────────────────────────────────────────────────────
-const NotifsPage = ({ onBack }: { onBack: () => void }) => {
-  const items = [
-    {
-      i: 'file' as IconName,
-      title: 'Assignment Due',
-      msg: 'Graphic Design logo project due in 3 days',
-      time: '2h ago',
-      c: T.cyan,
-    },
-    {
-      i: 'cal' as IconName,
-      title: 'Timetable Change',
-      msg: 'Room change: JavaScript class moved to CGS 204',
-      time: '5h ago',
-      c: T.mint,
-    },
-    {
-      i: 'award' as IconName,
-      title: 'College Event',
-      msg: 'Student Union social event this Friday 5pm',
-      time: '1d ago',
-      c: T.lilac,
-    },
-    {
-      i: 'warn' as IconName,
-      title: 'Attendance Alert',
-      msg: 'Attendance in Finance is below 75%',
-      time: '2d ago',
-      c: T.pink,
-    },
-    {
-      i: 'users' as IconName,
-      title: 'Tutor Message',
-      msg: 'Ms. Johnson left feedback on your portfolio',
-      time: '3d ago',
-      c: T.lav,
-    },
-  ];
+const NotifsPage = ({
+  items,
+  onBack,
+  onToggleRead,
+}: {
+  items: Notification[];
+  onBack: () => void;
+  onToggleRead: (id: number) => void;
+}) => {
+  const unreadCount = items.filter((n) => n.unread).length;
+
   return (
     <div style={{ height: '100%', overflowY: 'auto', background: T.bg }}>
       <div
@@ -1486,6 +1569,9 @@ const NotifsPage = ({ onBack }: { onBack: () => void }) => {
           alignItems: 'center',
           gap: 12,
           borderBottom: `1px solid ${T.border}`,
+          position: 'sticky',
+          top: 0,
+          zIndex: 10,
         }}
       >
         <button
@@ -1503,25 +1589,34 @@ const NotifsPage = ({ onBack }: { onBack: () => void }) => {
         <span style={{ fontWeight: 900, fontSize: 18, color: T.plum }}>
           Notifications
         </span>
-        <span
-          style={{
-            marginLeft: 'auto',
-            background: T.pink,
-            color: '#fff',
-            borderRadius: 99,
-            fontSize: 11,
-            fontWeight: 800,
-            padding: '2px 10px',
-          }}
-        >
-          5 new
-        </span>
+        {unreadCount > 0 && (
+          <span
+            style={{
+              marginLeft: 'auto',
+              background: T.pink,
+              color: '#fff',
+              borderRadius: 99,
+              fontSize: 11,
+              fontWeight: 800,
+              padding: '2px 10px',
+            }}
+          >
+            {unreadCount} new
+          </span>
+        )}
       </div>
       <div style={{ padding: '14px 14px 24px' }}>
-        {items.map((n, i) => (
+        {items.map((n) => (
           <Card
-            key={i}
-            style={{ display: 'flex', gap: 13, alignItems: 'flex-start' }}
+            key={n.id}
+            style={{
+              display: 'flex',
+              gap: 13,
+              alignItems: 'flex-start',
+              opacity: n.unread ? 1 : 0.6,
+              transition: 'opacity 0.2s',
+              position: 'relative',
+            }}
           >
             <div
               style={{
@@ -1548,6 +1643,19 @@ const NotifsPage = ({ onBack }: { onBack: () => void }) => {
               >
                 <span style={{ fontWeight: 800, color: T.plum, fontSize: 13 }}>
                   {n.title}
+                  {n.unread && (
+                    <span
+                      style={{
+                        display: 'inline-block',
+                        width: 6,
+                        height: 6,
+                        borderRadius: 3,
+                        background: T.pink,
+                        marginLeft: 6,
+                        verticalAlign: 'middle',
+                      }}
+                    />
+                  )}
                 </span>
                 <span style={{ color: T.muted, fontSize: 11 }}>{n.time}</span>
               </div>
@@ -1555,12 +1663,30 @@ const NotifsPage = ({ onBack }: { onBack: () => void }) => {
                 style={{
                   color: '#6b7280',
                   fontSize: 12,
-                  margin: '4px 0 0',
+                  margin: '4px 0 10px',
                   lineHeight: 1.5,
                 }}
               >
                 {n.msg}
               </p>
+              <button
+                onClick={() => onToggleRead(n.id)}
+                style={{
+                  background: n.unread ? T.bg : 'none',
+                  border: n.unread ? `1px solid ${T.border}` : 'none',
+                  borderRadius: 8,
+                  padding: n.unread ? '4px 10px' : '4px 0',
+                  fontSize: 11,
+                  fontWeight: 700,
+                  color: n.unread ? T.plum : T.muted,
+                  cursor: 'pointer',
+                  fontFamily: 'inherit',
+                  transition: 'all 0.2s',
+                  textDecoration: n.unread ? 'none' : 'underline',
+                }}
+              >
+                {n.unread ? 'Mark as Read' : 'Mark as Unread'}
+              </button>
             </div>
           </Card>
         ))}
@@ -2117,6 +2243,7 @@ const HomeTab = ({
   const [idx, setIdx] = useState(0);
   const [open, setOpen] = useState(true);
   const [modal, setModal] = useState(false);
+  const [flipped, setFlipped] = useState(false);
   const c = COURSES[idx];
 
   return (
@@ -2150,120 +2277,189 @@ const HomeTab = ({
           </div>
         </div>
 
+        {/* Overall stats
+        <div style={{ textAlign: 'center', marginTop: 10 }}>
+          <SecHead title="Overall Performance" />
+          <div
+            style={{
+              display: 'flex',
+              justifyContent: 'center',
+              gap: 20,
+              paddingTop: 12,
+              marginBottom: 20
+            }}
+          >
+            <Ring value={82} color={T.cyan} size={125} label="Attendance" />
+            <Ring value={88} color={T.mint} size={125} label="Punctuality" />
+          </div>
+        </div> */}
+
         {/* Course card */}
         <div
           style={{
-            borderRadius: 22,
-            background: c.grad,
-            padding: '22px 20px 18px',
+            perspective: 1200,
             marginBottom: 0,
-            position: 'relative',
-            overflow: 'hidden',
-            minHeight: 148,
-            boxShadow: `0 8px 32px rgba(69,0,32,0.15)`,
+            height: 168,
+            cursor: 'pointer',
           }}
         >
           <div
+            onClick={() => setFlipped(!flipped)}
             style={{
-              position: 'absolute',
-              inset: 0,
-              background: 'rgba(0,0,0,0.12)',
+              position: 'relative',
+              width: '100%',
+              height: '100%',
+              transition: 'transform 0.6s cubic-bezier(0.4, 0, 0.2, 1)',
+              transformStyle: 'preserve-3d',
+              transform: flipped ? 'rotateY(180deg)' : 'rotateY(0deg)',
             }}
-          />
-          <Ribbon />
-          <div style={{ position: 'relative', zIndex: 1 }}>
+          >
+            {/* Front Face */}
             <div
               style={{
-                display: 'flex',
-                justifyContent: 'space-between',
-                alignItems: 'flex-start',
-                marginBottom: 4,
-              }}
-            >
-              <div
-                style={{
-                  fontSize: 10,
-                  fontWeight: 800,
-                  color: 'rgba(255,255,255,0.8)',
-                  letterSpacing: 1.5,
-                  textTransform: 'uppercase',
-                }}
-              >
-                Course {idx + 1} / {COURSES.length}
-              </div>
-              <button
-                onClick={() => onCourse(c)}
-                style={{
-                  background: 'rgba(255,255,255,0.22)',
-                  backdropFilter: 'blur(8px)',
-                  border: '1.5px solid rgba(255,255,255,0.4)',
-                  borderRadius: 10,
-                  padding: '5px 12px',
-                  color: '#fff',
-                  fontSize: 12,
-                  fontWeight: 700,
-                  cursor: 'pointer',
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: 4,
-                }}
-              >
-                View <Ic n="chR" size={13} c="#fff" />
-              </button>
-            </div>
-            <div
-              style={{
-                fontWeight: 900,
-                fontSize: 20,
-                color: '#fff',
-                textShadow: '0 1px 8px rgba(0,0,0,0.2)',
-                lineHeight: 1.15,
-                marginBottom: 4,
-              }}
-            >
-              {c.name}
-            </div>
-            <p
-              style={{
-                fontSize: 12,
-                color: 'rgba(255,255,255,0.88)',
-                marginBottom: 14,
-                lineHeight: 1.5,
-              }}
-            >
-              {c.desc}
-            </p>
-            <div
-              style={{
-                background: 'rgba(255,255,255,0.28)',
-                borderRadius: 99,
-                height: 8,
+                borderRadius: 22,
+                background: c.grad,
+                padding: '22px 20px 18px',
+                position: 'absolute',
+                inset: 0,
                 overflow: 'hidden',
+                boxShadow: flipped ? 'none' : `0 8px 32px rgba(69,0,32,0.15)`,
+                backfaceVisibility: 'hidden',
+                WebkitBackfaceVisibility: 'hidden',
               }}
             >
               <div
                 style={{
-                  width: `${c.progress}%`,
-                  height: '100%',
-                  background: 'rgba(255,255,255,0.9)',
-                  borderRadius: 99,
-                  transition: 'width 0.7s',
+                  position: 'absolute',
+                  inset: 0,
+                  background: 'rgba(0,0,0,0.12)',
                 }}
               />
+              <Ribbon />
+              <div style={{ position: 'relative', zIndex: 1 }}>
+                <div
+                  style={{
+                    display: 'flex',
+                    justifyContent: 'space-between',
+                    alignItems: 'flex-start',
+                    marginBottom: 4,
+                  }}
+                >
+                  <div
+                    style={{
+                      fontSize: 10,
+                      fontWeight: 800,
+                      color: 'rgba(255,255,255,0.8)',
+                      letterSpacing: 1.5,
+                      textTransform: 'uppercase',
+                    }}
+                  >
+                    Course {idx + 1} / {COURSES.length}
+                  </div>
+                  <button
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      onCourse(c);
+                    }}
+                    style={{
+                      background: 'rgba(255,255,255,0.22)',
+                      backdropFilter: 'blur(8px)',
+                      border: '1.5px solid rgba(255,255,255,0.4)',
+                      borderRadius: 10,
+                      padding: '5px 12px',
+                      color: '#fff',
+                      fontSize: 12,
+                      fontWeight: 700,
+                      cursor: 'pointer',
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: 4,
+                    }}
+                  >
+                    View <Ic n="chR" size={13} c="#fff" />
+                  </button>
+                </div>
+                <div
+                  style={{
+                    fontWeight: 900,
+                    fontSize: 20,
+                    color: '#fff',
+                    textShadow: '0 1px 8px rgba(0,0,0,0.2)',
+                    lineHeight: 1.15,
+                    marginBottom: 4,
+                  }}
+                >
+                  {c.name}
+                </div>
+                <p
+                  style={{
+                    fontSize: 12,
+                    color: 'rgba(255,255,255,0.88)',
+                    marginBottom: 14,
+                    lineHeight: 1.5,
+                  }}
+                >
+                  {c.desc}
+                </p>
+                <div
+                  style={{
+                    background: 'rgba(255,255,255,0.28)',
+                    borderRadius: 99,
+                    height: 8,
+                    overflow: 'hidden',
+                  }}
+                >
+                  <div
+                    style={{
+                      width: `${c.progress}%`,
+                      height: '100%',
+                      background: 'rgba(255,255,255,0.9)',
+                      borderRadius: 99,
+                      transition: 'width 0.7s',
+                    }}
+                  />
+                </div>
+                <div
+                  style={{
+                    display: 'flex',
+                    justifyContent: 'space-between',
+                    marginTop: 5,
+                  }}
+                >
+                  <span style={{ fontSize: 11, color: 'rgba(255,255,255,0.8)' }}>
+                    Progress
+                  </span>
+                  <span style={{ fontSize: 12, color: '#fff', fontWeight: 800 }}>
+                    {c.progress}%
+                  </span>
+                </div>
+              </div>
             </div>
+
+            {/* Back Face */}
             <div
               style={{
+                borderRadius: 22,
+                background: T.card,
+                padding: '20px',
+                border: `1.5px solid ${T.border}`,
+                position: 'absolute',
+                inset: 0,
+                boxShadow: flipped ? `0 8px 32px rgba(69,0,32,0.15)` : 'none',
+                backfaceVisibility: 'hidden',
+                WebkitBackfaceVisibility: 'hidden',
+                transform: 'rotateY(180deg)',
                 display: 'flex',
-                justifyContent: 'space-between',
-                marginTop: 5,
+                alignItems: 'center',
+                justifyContent: 'space-evenly',
               }}
             >
-              <span style={{ fontSize: 11, color: 'rgba(255,255,255,0.8)' }}>
-                Progress
-              </span>
-              <span style={{ fontSize: 12, color: '#fff', fontWeight: 800 }}>
-                {c.progress}%
-              </span>
+              <div style={{ transform: 'scale(1.1)' }}>
+                <Ring value={c.att!} color={T.cyan} size={86} label="Attendance" />
+              </div>
+              <div style={{ transform: 'scale(1.1)' }}>
+                <Ring value={c.punc!} color={T.mint} size={86} label="Punctuality" />
+              </div>
             </div>
           </div>
         </div>
@@ -2279,7 +2475,10 @@ const HomeTab = ({
           }}
         >
           <button
-            onClick={() => setIdx(Math.max(0, idx - 1))}
+            onClick={() => {
+              setIdx(Math.max(0, idx - 1));
+              setFlipped(false);
+            }}
             style={{
               background: idx > 0 ? T.plum : '#e5e7eb',
               border: 'none',
@@ -2308,7 +2507,10 @@ const HomeTab = ({
             />
           ))}
           <button
-            onClick={() => setIdx(Math.min(COURSES.length - 1, idx + 1))}
+            onClick={() => {
+              setIdx(Math.min(COURSES.length - 1, idx + 1));
+              setFlipped(false);
+            }}
             style={{
               background: idx < COURSES.length - 1 ? T.plum : '#e5e7eb',
               border: 'none',
@@ -2427,91 +2629,147 @@ const HomeTab = ({
           </div>
         )}
 
-        {/* Overall stats */}
-        <Card style={{ padding: '18px 20px', marginTop: 4 }}>
-          <SecHead title="Overall Performance" />
+        {/* Print Balance */}
+        <div
+          style={{
+            borderRadius: 20,
+            background: `linear-gradient(135deg,${T.mint}44,${T.cyan}22)`,
+            border: `1.5px solid ${T.mint}66`,
+            padding: '14px 16px',
+            marginBottom: 16,
+            display: 'flex',
+            alignItems: 'center',
+            gap: 14,
+            boxShadow: `0 2px 12px ${T.mint}22`,
+          }}
+        >
           <div
             style={{
-              display: 'grid',
-              gridTemplateColumns: '1fr 1fr',
-              gap: 16,
-              paddingTop: 4,
+              width: 48,
+              height: 48,
+              borderRadius: 15,
+              background: `linear-gradient(135deg,${T.mint},${T.cyan})`,
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              flexShrink: 0,
+              boxShadow: `0 4px 12px ${T.cyan}44`,
             }}
           >
-            <Ring value={82} color={T.cyan} size={68} label="Attendance" />
-            <Ring value={88} color={T.mint} size={68} label="Punctuality" />
+            <Ic n="print" size={22} c={T.plum} sw={2} />
           </div>
-        </Card>
+          <div style={{ flex: 1 }}>
+            <div
+              style={{
+                fontSize: 11,
+                color: T.muted,
+                fontWeight: 600,
+                marginBottom: 2,
+              }}
+            >
+              Print Balance
+            </div>
+            <div
+              style={{ fontSize: 22, fontWeight: 900, color: T.plum, lineHeight: 1 }}
+            >
+              £5.00
+            </div>
+          </div>
+          <button
+            style={{
+              background: T.plum,
+              border: 'none',
+              borderRadius: 12,
+              padding: '8px 14px',
+              fontSize: 12,
+              fontWeight: 800,
+              color: '#fff',
+              cursor: 'pointer',
+              fontFamily: 'inherit',
+              flexShrink: 0,
+            }}
+          >
+            Top Up
+          </button>
+        </div>
 
         {/* Quick actions */}
         <SecHead title="Quick Actions" />
         <div
           style={{
-            display: 'grid',
-            gridTemplateColumns: '1fr 1fr 1fr',
+            display: 'flex',
             gap: 10,
+            overflowX: 'auto',
+            paddingBottom: 8,
             marginBottom: 16,
           }}
         >
           {[
             {
               i: 'warn' as IconName,
-              label: 'Report\nAbsence',
-              c: T.peach,
+              label: 'Report Absence',
+              c: `linear-gradient(135deg,${T.pink},${T.peach})`,
               a: () => setModal(true),
             },
             {
-              i: 'pin' as IconName,
-              label: 'Bristol\nEvents',
-              c: T.blue,
-              a: () => {},
+              i: 'trend' as IconName,
+              label: 'View Grades',
+              c: `linear-gradient(135deg,${T.cyan},${T.mint})`,
+              a: () => { },
             },
             {
-              i: 'print' as IconName,
-              label: 'Print\nBalance £5',
-              c: T.mint,
-              a: () => {},
+              i: 'users' as IconName,
+              label: 'My Tutor',
+              c: `linear-gradient(135deg,${T.purple},${T.lilac})`,
+              a: () => { },
+            },
+            {
+              i: 'book' as IconName,
+              label: 'Library',
+              c: `linear-gradient(135deg,${T.lemon}cc,${T.mint})`,
+              a: () => { },
             },
           ].map((q, i) => (
             <button
               key={i}
               onClick={q.a}
               style={{
-                background: q.c + '40',
-                border: `1.5px solid ${q.c}`,
-                borderRadius: 16,
-                padding: '14px 8px',
-                textAlign: 'center',
+                flexShrink: 0,
+                background: q.c,
+                border: 'none',
+                borderRadius: 20,
+                padding: '18px 14px',
                 cursor: 'pointer',
                 fontFamily: 'inherit',
                 display: 'flex',
                 flexDirection: 'column',
-                alignItems: 'center',
-                gap: 7,
-                transition: 'transform 0.1s',
-                boxShadow: `0 2px 8px ${q.c}33`,
+                alignItems: 'flex-start',
+                gap: 24,
+                width: 130,
+                boxShadow: `0 4px 16px rgba(69,0,32,0.15)`,
+                transition: 'transform 0.15s',
               }}
             >
               <div
                 style={{
-                  width: 40,
-                  height: 40,
+                  width: 38,
+                  height: 38,
                   borderRadius: 12,
-                  background: q.c + '60',
+                  background: 'rgba(255,255,255,0.3)',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
                 }}
               >
-                <Ic n={q.i} size={19} c={T.plum} />
+                <Ic n={q.i} size={20} c="#fff" sw={2.2} />
               </div>
               <span
                 style={{
-                  fontSize: 10,
+                  fontSize: 12,
                   fontWeight: 800,
-                  color: T.plum,
-                  lineHeight: 1.35,
-                  whiteSpace: 'pre-line',
+                  color: '#fff',
+                  lineHeight: 1.3,
+                  textAlign: 'left',
                 }}
               >
                 {q.label}
@@ -2522,50 +2780,145 @@ const HomeTab = ({
 
         {/* News */}
         <SecHead title="Campus News" action="See all" />
-        {NEWS.map((n, i) => (
-          <Card
-            key={i}
-            style={{ display: 'flex', gap: 14, alignItems: 'center' }}
-          >
+        <div
+          style={{
+            display: 'flex',
+            gap: 14,
+            overflowX: 'auto',
+            paddingBottom: 16,
+            marginBottom: 8,
+            snapType: 'x mandatory',
+          }}
+        >
+          {NEWS.map((n, i) => (
             <div
+              key={i}
               style={{
-                width: 48,
-                height: 48,
-                borderRadius: 14,
-                background: n.color + '55',
-                border: `1.5px solid ${n.color}44`,
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
+                width: 260,
                 flexShrink: 0,
+                height: 320,
+                borderRadius: 24,
+                overflow: 'hidden',
+                background: `linear-gradient(150deg, ${n.color}, ${n.color}bb)`,
+                position: 'relative',
+                display: 'flex',
+                flexDirection: 'column',
+                justifyContent: 'space-between',
+                padding: 20,
+                boxShadow: `0 8px 24px ${n.color}40`,
+                scrollSnapAlign: 'start',
               }}
             >
-              <Ic n={n.icon} size={22} c={T.plum} />
-            </div>
-            <div style={{ flex: 1 }}>
               <div
                 style={{
-                  fontWeight: 800,
-                  color: T.plum,
-                  fontSize: 13,
-                  marginBottom: 3,
+                  position: 'absolute',
+                  top: -60,
+                  right: -40,
+                  width: 200,
+                  height: 200,
+                  background: 'rgba(255,255,255,0.2)',
+                  borderRadius: 100,
+                  filter: 'blur(30px)',
+                  pointerEvents: 'none',
                 }}
-              >
-                {n.title}
-              </div>
-              <p
+              />
+              <div
                 style={{
-                  fontSize: 12,
-                  color: '#6b7280',
-                  lineHeight: 1.45,
-                  margin: 0,
+                  position: 'absolute',
+                  bottom: -40,
+                  left: -20,
+                  width: 150,
+                  height: 150,
+                  background: 'rgba(0,0,0,0.1)',
+                  borderRadius: 75,
+                  filter: 'blur(20px)',
+                  pointerEvents: 'none',
                 }}
-              >
-                {n.desc}
-              </p>
+              />
+
+              {/* Top part: Icon and Badge */}
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', position: 'relative', zIndex: 1 }}>
+                <div
+                  style={{
+                    width: 48,
+                    height: 48,
+                    borderRadius: 14,
+                    background: 'rgba(255,255,255,0.25)',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    backdropFilter: 'blur(8px)',
+                  }}
+                >
+                  <Ic n={n.icon} size={24} c="#fff" sw={2} />
+                </div>
+                <div
+                  style={{
+                    background: 'rgba(0,0,0,0.2)',
+                    color: '#fff',
+                    fontSize: 10,
+                    fontWeight: 800,
+                    padding: '4px 10px',
+                    borderRadius: 99,
+                    letterSpacing: 0.5,
+                    backdropFilter: 'blur(8px)',
+                  }}
+                >
+                  LATEST
+                </div>
+              </div>
+
+              {/* Bottom part: Title, Desc, and "Read More" */}
+              <div style={{ position: 'relative', zIndex: 1, marginTop: 'auto' }}>
+                <div
+                  style={{
+                    color: '#fff',
+                    fontSize: 22,
+                    fontWeight: 900,
+                    lineHeight: 1.15,
+                    marginBottom: 8,
+                    textShadow: '0 2px 4px rgba(0,0,0,0.15)',
+                  }}
+                >
+                  {n.title}
+                </div>
+                <p
+                  style={{
+                    color: 'rgba(255,255,255,0.9)',
+                    fontSize: 13,
+                    lineHeight: 1.4,
+                    marginBottom: 16,
+                    display: '-webkit-box',
+                    WebkitLineClamp: 3,
+                    WebkitBoxOrient: 'vertical',
+                    overflow: 'hidden',
+                  }}
+                >
+                  {n.desc}
+                </p>
+                <div style={{ display: 'flex' }}>
+                  <button
+                    style={{
+                      background: '#fff',
+                      color: T.plum,
+                      border: 'none',
+                      borderRadius: 12,
+                      padding: '10px 16px',
+                      fontSize: 12,
+                      fontWeight: 800,
+                      fontFamily: 'inherit',
+                      cursor: 'pointer',
+                      display: 'inline-block',
+                      boxShadow: '0 4px 12px rgba(0,0,0,0.1)',
+                    }}
+                  >
+                    Read full story
+                  </button>
+                </div>
+              </div>
             </div>
-          </Card>
-        ))}
+          ))}
+        </div>
       </div>
       {modal && <AbsenceModal onClose={() => setModal(false)} />}
     </div>
@@ -2701,6 +3054,7 @@ const TimetableTab = () => {
                 background: i === day ? T.plum : T.card,
                 color: i === day ? '#fff' : T.plum,
                 boxShadow: i === day ? `0 4px 12px ${T.plum}33` : 'none',
+                textAlign: 'center',
               }}
             >
               {d}
@@ -3019,7 +3373,7 @@ const InsightsTab = () => {
                   >
                     <div
                       style={{
-                        background: `linear-gradient(140deg,${ac}44,${ac}22)`,
+                        background: `linear-gradient(140deg,${ac},${ac}88)`,
                         padding: '16px 14px 12px',
                         position: 'relative',
                       }}
@@ -3109,149 +3463,309 @@ const InsightsTab = () => {
   );
 };
 
-// ─── TOOLS TAB ────────────────────────────────────────────────────────────────
-const ToolsTab = () => (
+// ─── TOOL DETAIL PAGE ─────────────────────────────────────────────────────────
+const ToolDetailPage = ({ tool, onBack }: { tool: Tool; onBack: () => void }) => (
   <div style={{ height: '100%', overflowY: 'auto', background: T.bg }}>
-    <div style={{ padding: '14px 16px 28px' }}>
+    <div
+      style={{
+        padding: '15px 18px',
+        background: T.card,
+        display: 'flex',
+        alignItems: 'center',
+        gap: 12,
+        borderBottom: `1px solid ${T.border}`,
+      }}
+    >
+      <button
+        onClick={onBack}
+        style={{ background: 'none', border: 'none', cursor: 'pointer', padding: 4, display: 'flex' }}
+      >
+        <Ic n="chL" size={22} c={T.plum} />
+      </button>
+      <span style={{ fontWeight: 900, fontSize: 18, color: T.plum }}>Tool Details</span>
+    </div>
+
+    <div style={{ padding: 20 }}>
       <div
         style={{
-          fontWeight: 900,
-          fontSize: 23,
-          color: T.plum,
-          marginBottom: 2,
+          display: 'flex',
+          alignItems: 'center',
+          gap: 18,
+          marginBottom: 30,
         }}
       >
-        Tools
-      </div>
-      <p style={{ color: T.muted, fontSize: 12, marginBottom: 18 }}>
-        Platforms and resources to help you succeed
-      </p>
-
-      {/* Icon grid */}
-      <Card style={{ padding: '18px 16px', marginBottom: 18 }}>
-        <SecHead title="All Available Tools" />
         <div
           style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(4,1fr)',
-            gap: 14,
+            width: 74,
+            height: 74,
+            borderRadius: 22,
+            overflow: 'hidden',
+            background: T.card,
+            padding: 8,
+            boxShadow: T.shadowMd,
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            flexShrink: 0,
           }}
         >
-          {TOOLS.map((t) => (
-            <div
-              key={t.name}
-              style={{
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'center',
-                gap: 6,
-                cursor: 'pointer',
-              }}
-            >
-              <div
-                style={{
-                  width: 54,
-                  height: 54,
-                  borderRadius: 17,
-                  background: (TAG_C[t.tag] || T.blue) + '33',
-                  border: `1.5px solid ${TAG_C[t.tag] || T.blue}55`,
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  boxShadow: `0 2px 10px ${TAG_C[t.tag] || T.blue}22`,
-                  transition: 'transform 0.12s',
-                }}
-              >
-                <Ic n={t.icon} size={24} c={T.plum} />
-              </div>
-              <span
-                style={{
-                  fontSize: 9,
-                  fontWeight: 800,
-                  color: T.plum,
-                  textAlign: 'center',
-                  lineHeight: 1.25,
-                  letterSpacing: 0.1,
-                }}
-              >
-                {t.name}
-              </span>
-            </div>
-          ))}
+          {tool.logo ? (
+            <img src={tool.logo} style={{ width: '100%', height: '100%', objectFit: 'contain' }} alt="" />
+          ) : (
+            <Ic n={tool.icon || 'wrench'} size={36} c={T.plum} />
+          )}
         </div>
-      </Card>
+        <div>
+          <h2 style={{ fontWeight: 900, fontSize: 22, color: T.plum, marginBottom: 4 }}>{tool.name}</h2>
+          <Pill text={tool.tag} color={TAG_C[tool.tag] || T.blue} />
+        </div>
+      </div>
 
-      {/* Detailed list */}
-      <SecHead title="Tool Details" />
-      {TOOLS.map((t) => (
-        <Card
-          key={t.name}
-          style={{ display: 'flex', gap: 14, alignItems: 'flex-start' }}
-        >
-          <div
-            style={{
-              width: 52,
-              height: 52,
-              borderRadius: 16,
-              flexShrink: 0,
-              background: (TAG_C[t.tag] || T.blue) + '33',
-              border: `1.5px solid ${TAG_C[t.tag] || T.blue}55`,
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-            }}
-          >
-            <Ic n={t.icon} size={23} c={T.plum} />
+      <div style={{ marginBottom: 24 }}>
+        <div style={{ fontWeight: 800, fontSize: 16, color: T.plum, marginBottom: 8 }}>Description</div>
+        <p style={{ fontSize: 14, color: '#4b5563', lineHeight: 1.6 }}>{tool.longDesc || tool.desc}</p>
+      </div>
+
+      {tool.benefits && (
+        <div style={{ marginBottom: 24 }}>
+          <div style={{ fontWeight: 800, fontSize: 16, color: T.plum, marginBottom: 12 }}>Benefits</div>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
+            {tool.benefits.map((b, i) => (
+              <div key={i} style={{ display: 'flex', gap: 10, alignItems: 'flex-start' }}>
+                <Ic n="check" size={16} c={T.green} sw={3} />
+                <span style={{ fontSize: 13, color: '#4b5563', lineHeight: 1.4 }}>{b}</span>
+              </div>
+            ))}
           </div>
-          <div style={{ flex: 1 }}>
-            <div
-              style={{
-                display: 'flex',
-                alignItems: 'center',
-                gap: 8,
-                marginBottom: 5,
-              }}
-            >
-              <span style={{ fontWeight: 900, color: T.plum, fontSize: 15 }}>
-                {t.name}
-              </span>
-              <Pill text={t.tag} color={TAG_C[t.tag] || T.blue} />
-            </div>
-            <p
-              style={{
-                fontSize: 12,
-                color: '#6b7280',
-                lineHeight: 1.6,
-                margin: '0 0 10px',
-              }}
-            >
-              {t.desc}
-            </p>
-            <button
-              style={{
-                background: T.plum,
-                border: 'none',
-                borderRadius: 10,
-                padding: '7px 15px',
-                fontSize: 12,
-                fontWeight: 800,
-                color: '#fff',
-                cursor: 'pointer',
-                fontFamily: 'inherit',
-                display: 'flex',
-                alignItems: 'center',
-                gap: 6,
-                boxShadow: `0 3px 10px ${T.plum}33`,
-              }}
-            >
-              <Ic n="link" size={13} c="#fff" /> Open Tool
-            </button>
+        </div>
+      )}
+
+      {tool.features && (
+        <div style={{ marginBottom: 24 }}>
+          <div style={{ fontWeight: 800, fontSize: 16, color: T.plum, marginBottom: 12 }}>Features</div>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
+            {tool.features.map((f, i) => (
+              <div key={i} style={{ display: 'flex', gap: 10, alignItems: 'flex-start' }}>
+                <div
+                  style={{
+                    width: 6,
+                    height: 6,
+                    borderRadius: 3,
+                    background: T.plumLt,
+                    marginTop: 6,
+                    flexShrink: 0,
+                  }}
+                />
+                <span style={{ fontSize: 13, color: '#4b5563', lineHeight: 1.4 }}>{f}</span>
+              </div>
+            ))}
           </div>
-        </Card>
-      ))}
+        </div>
+      )}
+
+      <button
+        onClick={() => window.open(tool.url, '_blank')}
+        style={{
+          width: '100%',
+          background: T.plum,
+          color: '#fff',
+          border: 'none',
+          borderRadius: 16,
+          padding: '16px 20px',
+          fontWeight: 800,
+          fontSize: 16,
+          cursor: 'pointer',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          gap: 10,
+          boxShadow: `0 8px 24px ${T.plum}44`,
+          marginTop: 10,
+        }}
+      >
+        Go to Website <Ic n="link" size={18} c="#fff" />
+      </button>
     </div>
   </div>
 );
+
+// ─── TOOLS TAB ────────────────────────────────────────────────────────────────
+const ToolsTab = ({ onSelect }: { onSelect: (t: Tool) => void }) => (
+  <div style={{ height: '100%', overflowY: 'auto', background: T.bg }}>
+    <div style={{ padding: '16px 16px 48px' }}>
+      <div
+        style={{
+          display: 'flex',
+          justifyContent: 'space-between',
+          alignItems: 'center',
+          marginBottom: 20,
+        }}
+      >
+        <div>
+          <div style={{ fontWeight: 900, fontSize: 24, color: T.plum }}>Tools & Links</div>
+          <p style={{ color: T.muted, fontSize: 13, marginTop: 2 }}>Essential resources for your studies</p>
+        </div>
+        <div
+          style={{
+            width: 44,
+            height: 44,
+            borderRadius: 15,
+            background: T.card,
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            boxShadow: T.shadow,
+          }}
+        >
+          <Ic n="wrench" size={20} c={T.plum} />
+        </div>
+      </div>
+
+      {/* Grid view first as requested */}
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 12, marginBottom: 24 }}>
+        {TOOLS.map((t) => (
+          <div
+            key={t.name + '_grid'}
+            onClick={() => onSelect(t)}
+            style={{
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+              gap: 8,
+              cursor: 'pointer',
+            }}
+          >
+            <div
+              style={{
+                width: 68,
+                height: 68,
+                borderRadius: 20,
+                background: T.card,
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                boxShadow: T.shadow,
+                border: `1px solid ${T.border}44`,
+                overflow: 'hidden',
+                padding: 12,
+                transition: 'transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275)',
+              }}
+            >
+              {t.logo ? (
+                <img src={t.logo} style={{ width: '100%', height: '100%', objectFit: 'contain' }} alt="" />
+              ) : (
+                <Ic n={t.icon || 'wrench'} size={28} c={T.plum} />
+              )}
+            </div>
+            <span
+              style={{
+                fontSize: 10,
+                fontWeight: 800,
+                color: T.plum,
+                textAlign: 'center',
+                lineHeight: 1.2,
+                maxWidth: 70,
+                background: 'rgba(255,255,255,0.7)',
+                padding: '2px 4px',
+                borderRadius: 4
+              }}
+            >
+              {t.name}
+            </span>
+          </div>
+        ))}
+      </div>
+
+      <SecHead title="All Resources" />
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
+        {TOOLS.map((t) => (
+          <Card
+            key={t.name}
+            onClick={() => onSelect(t)}
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              gap: 14,
+              padding: '12px 14px',
+              cursor: 'pointer',
+              transition: 'all 0.15s ease',
+              border: `1px solid ${T.border}44`,
+            }}
+          >
+            <div
+              style={{
+                width: 46,
+                height: 46,
+                borderRadius: 14,
+                overflow: 'hidden',
+                background: '#f8fafc',
+                border: `1px solid ${T.border}66`,
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                flexShrink: 0,
+              }}
+            >
+              {t.logo ? (
+                <img src={t.logo} style={{ width: '100%', height: '100%', objectFit: 'contain', padding: 6 }} alt="" />
+              ) : (
+                <Ic n={t.icon || 'wrench'} size={22} c={T.plum} />
+              )}
+            </div>
+
+            <div style={{ flex: 1, minWidth: 0 }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 2 }}>
+                <span style={{ fontWeight: 800, color: T.plum, fontSize: 14 }}>{t.name}</span>
+                <span
+                  style={{
+                    fontSize: 9,
+                    fontWeight: 800,
+                    color: TAG_C[t.tag] || T.blue,
+                    background: (TAG_C[t.tag] || T.blue) + '18',
+                    padding: '2px 6px',
+                    borderRadius: 6,
+                    textTransform: 'uppercase',
+                    letterSpacing: 0.4,
+                  }}
+                >
+                  {t.tag}
+                </span>
+              </div>
+              <p
+                style={{
+                  fontSize: 11,
+                  color: T.muted,
+                  lineHeight: 1.4,
+                  display: '-webkit-box',
+                  WebkitLineClamp: 1,
+                  WebkitBoxOrient: 'vertical',
+                  overflow: 'hidden',
+                }}
+              >
+                {t.desc}
+              </p>
+            </div>
+
+            <div
+              style={{
+                width: 32,
+                height: 32,
+                borderRadius: 10,
+                background: T.bg,
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+              }}
+            >
+              <Ic n="chR" size={16} c={T.muted} />
+            </div>
+          </Card>
+        ))}
+      </div>
+    </div>
+  </div>
+);
+
 
 // ─── PROFILE TAB ──────────────────────────────────────────────────────────────
 const ProfileTab = () => {
@@ -3312,12 +3826,12 @@ const ProfileTab = () => {
           </div>
           <div
             style={{
-              background: `linear-gradient(135deg,${T.lilac},${T.purple})`,
+              background: 'rgba(255,255,255,0.9)',
               borderRadius: 99,
               padding: '5px 20px',
               fontSize: 12,
               fontWeight: 800,
-              color: '#fff',
+              color: T.plum,
               boxShadow: `0 3px 12px ${T.purple}55`,
               letterSpacing: 0.4,
             }}
@@ -3623,11 +4137,28 @@ export default function App() {
   const [notifs, setNotifs] = useState(false);
   const [course, setCourse] = useState<Course | null>(null);
   const [unit, setUnit] = useState<Unit | null>(null);
+  const [selectedTool, setSelectedTool] = useState<Tool | null>(null);
+  const [notifications, setNotifications] = useState<Notification[]>(NOTIFS_DATA);
 
-  const showNav = !notifs && !unit && !course;
+  const hasUnread = notifications.some((n) => n.unread);
+
+  const toggleRead = (id: number) => {
+    setNotifications((prev) =>
+      prev.map((n) => (n.id === id ? { ...n, unread: !n.unread } : n))
+    );
+  };
+
+  const showNav = !notifs && !unit && !course && !selectedTool;
 
   const Content = () => {
-    if (notifs) return <NotifsPage onBack={() => setNotifs(false)} />;
+    if (notifs)
+      return (
+        <NotifsPage
+          items={notifications}
+          onBack={() => setNotifs(false)}
+          onToggleRead={toggleRead}
+        />
+      );
     if (unit) return <UnitPage unit={unit} onBack={() => setUnit(null)} />;
     if (course)
       return (
@@ -3637,11 +4168,12 @@ export default function App() {
           onUnit={setUnit}
         />
       );
+    if (selectedTool) return <ToolDetailPage tool={selectedTool} onBack={() => setSelectedTool(null)} />;
     if (tab === 'home')
       return <HomeTab onCourse={setCourse} onUnit={setUnit} />;
     if (tab === 'timetable') return <TimetableTab />;
     if (tab === 'insights') return <InsightsTab />;
-    if (tab === 'tools') return <ToolsTab />;
+    if (tab === 'tools') return <ToolsTab onSelect={setSelectedTool} />;
     if (tab === 'profile') return <ProfileTab />;
     return null;
   };
@@ -3662,8 +4194,8 @@ export default function App() {
       }}
     >
       <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400&display=swap');
-        * { box-sizing: border-box; margin: 0; padding: 0; }
+         @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400&display=swap');
+        * { box-sizing: border-box; margin: 0; padding: 0; text-align: left; }
         ::-webkit-scrollbar { width: 0; height: 0; }
         button { font-family: 'Poppins','Segoe UI',sans-serif; }
         input, textarea { font-family: 'Poppins','Segoe UI',sans-serif; }
@@ -3784,7 +4316,7 @@ export default function App() {
                   letterSpacing: -0.3,
                 }}
               >
-                Bristol College
+                Bristol College App
               </div>
             </div>
           </div>
@@ -3805,18 +4337,20 @@ export default function App() {
             }}
           >
             <Ic n="bell" size={19} c={T.plum} />
-            <span
-              style={{
-                position: 'absolute',
-                top: 8,
-                right: 8,
-                width: 9,
-                height: 9,
-                borderRadius: 9,
-                background: T.pink,
-                border: '2px solid white',
-              }}
-            />
+            {hasUnread && (
+              <span
+                style={{
+                  position: 'absolute',
+                  top: 8,
+                  right: 8,
+                  width: 9,
+                  height: 9,
+                  borderRadius: 9,
+                  background: T.pink,
+                  border: '2px solid white',
+                }}
+              />
+            )}
           </button>
         </div>
 
@@ -3846,6 +4380,7 @@ export default function App() {
                     setTab(n.id);
                     setCourse(null);
                     setUnit(null);
+                    setSelectedTool(null);
                   }}
                   style={{
                     flex: 1,
