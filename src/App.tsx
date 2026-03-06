@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState } from "react";
 import { Ic } from "./components/icons/Icons";
 import { LogoCompact } from "./components/icons/LogoCompact";
 import { NOTIFS_DATA, Notification } from "./components/modals/AbsenceModal";
@@ -16,27 +16,27 @@ import { TimetableTab } from "./tabs/TimetableTab";
 import { ToolsTab } from "./tabs/ToolsTab";
 import { T } from "./theme/tokens";
 
-
 export default function App() {
   const [splash, setSplash] = useState(true);
-  const [tab, setTab] = useState('home');
+  const [tab, setTab] = useState("home");
   const [notifs, setNotifs] = useState(false);
   const [course, setCourse] = useState<Course | null>(null);
   const [unit, setUnit] = useState<Unit | null>(null);
   const [selectedTool, setSelectedTool] = useState<Tool | null>(null);
-  const [notifications, setNotifications] = useState<Notification[]>(NOTIFS_DATA);
+  const [notifications, setNotifications] =
+    useState<Notification[]>(NOTIFS_DATA);
 
   const hasUnread = notifications.some((n) => n.unread);
 
   const toggleRead = (id: number) => {
     setNotifications((prev) =>
-      prev.map((n) => (n.id === id ? { ...n, unread: !n.unread } : n))
+      prev.map((n) => (n.id === id ? { ...n, unread: !n.unread } : n)),
     );
   };
 
   const showNav = !notifs && !unit && !course && !selectedTool;
 
-  const Content = () => {
+  const renderContent = () => {
     if (notifs)
       return (
         <NotifsPage
@@ -54,27 +54,33 @@ export default function App() {
           onUnit={setUnit}
         />
       );
-    if (selectedTool) return <ToolDetailPage tool={selectedTool} onBack={() => setSelectedTool(null)} />;
-    if (tab === 'home')
+    if (selectedTool)
+      return (
+        <ToolDetailPage
+          tool={selectedTool}
+          onBack={() => setSelectedTool(null)}
+        />
+      );
+    if (tab === "home")
       return <HomeTab onCourse={setCourse} onUnit={setUnit} />;
-    if (tab === 'timetable') return <TimetableTab />;
-    if (tab === 'insights') return <InsightsTab />;
-    if (tab === 'tools') return <ToolsTab onSelect={setSelectedTool} />;
-    if (tab === 'profile') return <ProfileTab />;
+    if (tab === "timetable") return <TimetableTab />;
+    if (tab === "insights") return <InsightsTab />;
+    if (tab === "tools") return <ToolsTab onSelect={setSelectedTool} />;
+    if (tab === "profile") return <ProfileTab />;
     return null;
   };
 
   return (
     <div
       style={{
-        height: '100dvh',
-        width: '100%',
+        height: "100dvh",
+        width: "100%",
         maxWidth: 410,
-        margin: '0 auto',
-        boxShadow: '0 0 40px rgba(0,0,0,0.08)',
+        margin: "0 auto",
+        boxShadow: "0 0 40px rgba(0,0,0,0.08)",
         background: T.card,
-        display: 'flex',
-        flexDirection: 'column',
+        display: "flex",
+        flexDirection: "column",
         fontFamily: "'Poppins','Segoe UI',sans-serif",
       }}
     >
@@ -101,10 +107,10 @@ export default function App() {
       <div
         style={{
           flex: 1,
-          display: 'flex',
-          flexDirection: 'column',
-          position: 'relative',
-          overflow: 'hidden',
+          display: "flex",
+          flexDirection: "column",
+          position: "relative",
+          overflow: "hidden",
         }}
       >
         {/* Splash screen */}
@@ -114,16 +120,16 @@ export default function App() {
         <div
           style={{
             background: T.card,
-            padding: '12px 18px',
-            display: 'flex',
-            justifyContent: 'space-between',
-            alignItems: 'center',
+            padding: "12px 18px",
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
             borderBottom: `1px solid ${T.border}`,
             flexShrink: 0,
-            paddingTop: 'env(safe-area-inset-top, 12px)'
+            paddingTop: "env(safe-area-inset-top, 12px)",
           }}
         >
-          <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+          <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
             <LogoCompact />
             <div>
               <div
@@ -132,7 +138,7 @@ export default function App() {
                   color: T.muted,
                   fontWeight: 600,
                   letterSpacing: 1,
-                  textTransform: 'uppercase',
+                  textTransform: "uppercase",
                   lineHeight: 1,
                 }}
               >
@@ -154,16 +160,16 @@ export default function App() {
           <button
             onClick={() => setNotifs(true)}
             style={{
-              position: 'relative',
+              position: "relative",
               background: T.bg,
               border: `1.5px solid ${T.border}`,
               borderRadius: 13,
               width: 42,
               height: 42,
-              cursor: 'pointer',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
+              cursor: "pointer",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
               boxShadow: `0 1px 4px ${T.shadow}`,
             }}
           >
@@ -171,14 +177,14 @@ export default function App() {
             {hasUnread && (
               <span
                 style={{
-                  position: 'absolute',
+                  position: "absolute",
                   top: 8,
                   right: 8,
                   width: 9,
                   height: 9,
                   borderRadius: 9,
                   background: T.pink,
-                  border: '2px solid white',
+                  border: "2px solid white",
                 }}
               />
             )}
@@ -186,8 +192,8 @@ export default function App() {
         </div>
 
         {/* Content */}
-        <div style={{ flex: 1, overflow: 'hidden', position: 'relative' }}>
-          <Content />
+        <div style={{ flex: 1, overflow: "hidden", position: "relative" }}>
+          {renderContent()}
         </div>
 
         {/* Bottom nav */}
@@ -196,9 +202,9 @@ export default function App() {
             style={{
               background: T.card,
               borderTop: `1px solid ${T.border}`,
-              display: 'flex',
+              display: "flex",
               flexShrink: 0,
-              paddingBottom: 'calc(env(safe-area-inset-bottom, 0px) + 10px)',
+              paddingBottom: "calc(env(safe-area-inset-bottom, 0px) + 10px)",
               paddingTop: 2,
             }}
           >
@@ -215,27 +221,27 @@ export default function App() {
                   }}
                   style={{
                     flex: 1,
-                    display: 'flex',
-                    flexDirection: 'column',
-                    alignItems: 'center',
-                    padding: '6px 2px 4px',
-                    background: 'none',
-                    border: 'none',
-                    cursor: 'pointer',
-                    position: 'relative',
+                    display: "flex",
+                    flexDirection: "column",
+                    alignItems: "center",
+                    padding: "6px 2px 4px",
+                    background: "none",
+                    border: "none",
+                    cursor: "pointer",
+                    position: "relative",
                   }}
                 >
                   {active && (
                     <div
                       style={{
-                        position: 'absolute',
+                        position: "absolute",
                         top: 0,
-                        left: '50%',
-                        transform: 'translateX(-50%)',
+                        left: "50%",
+                        transform: "translateX(-50%)",
                         width: 32,
                         height: 3,
                         background: n.ac,
-                        borderRadius: '0 0 4px 4px',
+                        borderRadius: "0 0 4px 4px",
                       }}
                     />
                   )}
@@ -244,18 +250,18 @@ export default function App() {
                       width: 36,
                       height: 36,
                       borderRadius: 11,
-                      background: active ? n.ac + '33' : 'transparent',
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      transition: 'background 0.2s',
+                      background: active ? n.ac + "33" : "transparent",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      transition: "background 0.2s",
                       marginBottom: 2,
                     }}
                   >
                     <Ic
                       n={n.icon}
                       size={20}
-                      c={active ? T.plum : '#b0b7c3'}
+                      c={active ? T.plum : "#b0b7c3"}
                       sw={active ? 2.3 : 1.7}
                     />
                   </div>
@@ -263,9 +269,9 @@ export default function App() {
                     style={{
                       fontSize: 9,
                       fontWeight: active ? 900 : 500,
-                      color: active ? T.plum : '#b0b7c3',
+                      color: active ? T.plum : "#b0b7c3",
                       letterSpacing: active ? 0.2 : 0,
-                      transition: 'all 0.2s',
+                      transition: "all 0.2s",
                     }}
                   >
                     {n.label}
