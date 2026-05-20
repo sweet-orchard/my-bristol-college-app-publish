@@ -24,6 +24,27 @@ export const HomeTab = ({
 
   return (
     <div style={{ height: '100%', overflowY: 'auto', background: T.bg }}>
+      <style>{`
+        .dashboard-grid {
+          display: flex;
+          flex-direction: column;
+          gap: 0;
+        }
+        @container (min-width: 800px) {
+          .dashboard-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+            align-items: flex-start;
+          }
+          .grid-col-left, .grid-col-right {
+            min-width: 0;
+          }
+          .grid-col-right {
+            margin-top: -6px;
+          }
+        }
+      `}</style>
       <div style={{ padding: '14px 16px 24px' }}>
         {/* Greeting */}
         <div style={{ marginBottom: 16 }}>
@@ -70,8 +91,12 @@ export const HomeTab = ({
           </div>
         </div> */}
 
-        {/* Course card */}
-        <div
+        {/* Dashboard Grid */}
+        <div className="dashboard-grid">
+          {/* Left Column */}
+          <div className="grid-col-left">
+            {/* Course card */}
+            <div
           style={{
             perspective: 1200,
             marginBottom: 0,
@@ -404,7 +429,10 @@ export const HomeTab = ({
             ))}
           </div>
         )}
+        </div>
 
+        {/* Right Column */}
+        <div className="grid-col-right">
         {/* Print Balance */}
         <div
           style={{
@@ -552,6 +580,8 @@ export const HomeTab = ({
               </span>
             </button>
           ))}
+        </div>
+        </div>
         </div>
 
         {/* News */}

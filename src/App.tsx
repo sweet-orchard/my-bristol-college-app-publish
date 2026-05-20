@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Ic } from "./components/icons/Icons";
 import { LogoCompact } from "./components/icons/LogoCompact";
 import { NOTIFS_DATA, Notification } from "./components/modals/AbsenceModal";
@@ -12,6 +12,7 @@ import { type Unit, UnitPage } from "./pages/UnitPage";
 import { HomeTab } from "./tabs/HomeTab";
 import { InsightsTab } from "./tabs/InsightsTab";
 import { ProfileTab } from "./tabs/ProfileTab";
+import { LoginPage } from "./pages/LoginPage";
 import { TimetableTab } from "./tabs/TimetableTab";
 import { ToolsTab } from "./tabs/ToolsTab";
 import { T } from "./theme/tokens";
@@ -25,6 +26,16 @@ export default function App() {
   const [selectedTool, setSelectedTool] = useState<Tool | null>(null);
   const [notifications, setNotifications] =
     useState<Notification[]>(NOTIFS_DATA);
+  const [deviceMode, setDeviceMode] = useState<"phone" | "tablet">("phone");
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [tabletOrientation, setTabletOrientation] = useState<"landscape" | "portrait">("landscape");
+  const [isDesktop, setIsDesktop] = useState(window.innerWidth > 800);
+
+  useEffect(() => {
+    const handleResize = () => setIsDesktop(window.innerWidth > 800);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   const hasUnread = notifications.some((n) => n.unread);
 
@@ -34,9 +45,10 @@ export default function App() {
     );
   };
 
-  const showNav = !notifs && !unit && !course && !selectedTool;
+  const showNav = isLoggedIn && !notifs && !unit && !course && !selectedTool;
 
   const renderContent = () => {
+    if (!isLoggedIn) return <LoginPage onLogin={() => setIsLoggedIn(true)} />;
     if (notifs)
       return (
         <NotifsPage
@@ -66,24 +78,154 @@ export default function App() {
     if (tab === "timetable") return <TimetableTab />;
     if (tab === "insights") return <InsightsTab />;
     if (tab === "tools") return <ToolsTab onSelect={setSelectedTool} />;
-    if (tab === "profile") return <ProfileTab />;
+    if (tab === "profile") return <ProfileTab onSignOut={() => setIsLoggedIn(false)} />;
     return null;
   };
 
-  return (
-    <div
-      style={{
+  const getAppStyles = (): React.CSSProperties => {
+    if (!isDesktop) {
+      return {
         height: "100dvh",
         width: "100%",
-        maxWidth: 410,
+        maxWidth: "none",
         margin: "0 auto",
-        boxShadow: "0 0 40px rgba(0,0,0,0.08)",
         background: T.card,
         display: "flex",
         flexDirection: "column",
         fontFamily: "'Poppins','Segoe UI',sans-serif",
-      }}
-    >
+      };
+    }
+
+    if (deviceMode === "phone") {
+      return {
+        height: "100dvh",
+        maxHeight: 896,
+        width: "100%",
+        maxWidth: 414,
+        margin: "auto",
+        background: T.card,
+        display: "flex",
+        flexDirection: "column",
+        fontFamily: "'Poppins','Segoe UI',sans-serif",
+        boxShadow: "0 0 50px rgba(0,0,0,0.15)",
+        overflow: "hidden",
+        border: "14px solid #1a1a1a",
+        borderRadius: 40,
+      };
+    }
+
+    const isLandscape = tabletOrientation === "landscape";
+    return {
+      height: "100dvh",
+      maxHeight: isLandscape ? 768 : 1024,
+      width: "100%",
+      maxWidth: isLandscape ? 1024 : 768,
+      margin: "auto",
+      background: "#ffffff",
+      display: "flex",
+      flexDirection: "column",
+      fontFamily: "'Poppins','Segoe UI',sans-serif",
+      boxShadow: "0 0 50px rgba(0,0,0,0.15)",
+      overflow: "hidden",
+      border: "16px solid #1a1a1a",
+      borderRadius: 40,
+    };
+  };
+
+  return (
+    <div style={{
+      display: isDesktop ? "flex" : "block",
+      alignItems: "center",
+      justifyContent: "center",
+      minHeight: "100dvh",
+      width: "100%",
+      background: "#eef0f4",
+      position: "relative",
+      boxSizing: "border-box"
+    }}>
+      {isDesktop && (
+        <div style={{ 
+          position: 'absolute', 
+          top: '50%', 
+          left: 60, 
+          transform: 'translateY(-50%) rotate(-90deg)',
+          transformOrigin: 'center left',
+          zIndex: 9999, 
+          display: 'flex', 
+          gap: 10, 
+          background: 'rgba(255,255,255,0.9)', 
+          padding: '8px 16px', 
+          borderRadius: 30, 
+          boxShadow: '0 4px 12px rgba(0,0,0,0.08)', 
+          backdropFilter: 'blur(10px)',
+          border: `1px solid ${T.border}`
+        }}>
+          <button 
+            onClick={() => setDeviceMode('phone')}
+            style={{ 
+              padding: '8px 20px', 
+              borderRadius: 20, 
+              border: 'none', 
+              background: deviceMode === 'phone' ? T.plum : 'transparent', 
+              color: deviceMode === 'phone' ? 'white' : T.plum, 
+              fontWeight: 600, 
+              fontSize: 14,
+              cursor: 'pointer', 
+              transition: 'all 0.2s' 
+            }}
+          >
+            Phone
+          </button>
+          <button 
+            onClick={() => setDeviceMode('tablet')}
+            style={{ 
+              padding: '8px 20px', 
+              borderRadius: 20, 
+              border: 'none', 
+              background: deviceMode === 'tablet' ? T.plum : 'transparent', 
+              color: deviceMode === 'tablet' ? 'white' : T.plum, 
+              fontWeight: 600, 
+              fontSize: 14,
+              cursor: 'pointer', 
+              transition: 'all 0.2s' 
+            }}
+          >
+            Tablet
+          </button>
+        </div>
+      )}
+      
+      {isDesktop && deviceMode === 'tablet' && (
+        <button 
+          onClick={() => setTabletOrientation(prev => prev === 'landscape' ? 'portrait' : 'landscape')}
+          style={{ 
+            position: 'absolute', 
+            top: 24, 
+            right: 24, 
+            zIndex: 9999,
+            padding: 12, 
+            borderRadius: 30, 
+            border: `1px solid ${T.border}`, 
+            background: 'rgba(255,255,255,0.9)', 
+            boxShadow: '0 4px 12px rgba(0,0,0,0.08)',
+            backdropFilter: 'blur(10px)',
+            color: T.plum, 
+            cursor: 'pointer', 
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            transition: 'all 0.2s',
+          }}
+          title="Rotate Tablet"
+        >
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+            <polyline points="23 4 23 10 17 10"></polyline>
+            <path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"></path>
+          </svg>
+        </button>
+      )}
+
+      <div style={getAppStyles()}>
       <style>{`
          @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400&display=swap');
         * { box-sizing: border-box; margin: 0; padding: 0; text-align: left; }
@@ -111,15 +253,20 @@ export default function App() {
           flexDirection: "column",
           position: "relative",
           overflow: "hidden",
+          width: "100%",
+          maxWidth: "100%",
+          margin: "0 auto",
+          background: T.card,
         }}
       >
         {/* Splash screen */}
         {splash && <SplashScreen onDone={() => setSplash(false)} />}
 
         {/* Header */}
-        <div
-          style={{
-            background: T.card,
+        {isLoggedIn && (
+          <div
+            style={{
+              background: T.card,
             padding: "12px 18px",
             display: "flex",
             justifyContent: "space-between",
@@ -190,9 +337,10 @@ export default function App() {
             )}
           </button>
         </div>
+        )}
 
         {/* Content */}
-        <div style={{ flex: 1, overflow: "hidden", position: "relative" }}>
+        <div style={{ flex: 1, overflow: "hidden", position: "relative", containerType: "inline-size" }}>
           {renderContent()}
         </div>
 
@@ -281,6 +429,7 @@ export default function App() {
             })}
           </div>
         )}
+      </div>
       </div>
     </div>
   );

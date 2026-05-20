@@ -5,7 +5,7 @@ import { RibbonProfile } from "../components/shared/Ribbon";
 import { T } from "../theme/tokens";
 
 
-export const ProfileTab = () => {
+export const ProfileTab = ({ onSignOut }: { onSignOut?: () => void }) => {
   const [darkMode, setDark] = useState(false);
   const [largeText, setLarge] = useState(false);
   const [contrast, setContrast] = useState(false);
@@ -345,6 +345,7 @@ export const ProfileTab = () => {
             marginBottom: 8,
             transition: 'background 0.15s',
           }}
+          onClick={onSignOut}
         >
           <Ic n="exit" size={18} c={T.pink} /> Sign Out
         </button>
