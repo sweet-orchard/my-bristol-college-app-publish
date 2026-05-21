@@ -1,14 +1,23 @@
 self.addEventListener('install', (e) => {
+    self.skipWaiting(); // Force the waiting service worker to become the active service worker.
+});
+
+self.addEventListener('activate', (e) => {
+    // Delete all caches to ensure the app is freshly loaded
     e.waitUntil(
-        caches.open('bristol-app-store').then((cache) => cache.addAll([
-            '/',
-            '/index.html',
-        ])),
+        caches.keys().then((cacheNames) => {
+            return Promise.all(
+                cacheNames.map((cacheName) => {
+                    return caches.delete(cacheName);
+                })
+            );
+        }).then(() => {
+            self.clients.claim();
+        })
     );
 });
 
 self.addEventListener('fetch', (e) => {
-    e.respondWith(
-        caches.match(e.request).then((response) => response || fetch(e.request)),
-    );
+    // Completely bypass the cache
+    e.respondWith(fetch(e.request));
 });
