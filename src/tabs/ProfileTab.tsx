@@ -86,7 +86,7 @@ export const ProfileTab = ({ onSignOut }: { onSignOut?: () => void }) => {
               ['Student ID', 'BS2024-8821'],
               ['Programme', 'Digital Media Arts'],
               ['Campus', 'College Green Centre'],
-              ['Email', 'a.thompson@cityofbristol.ac.uk'],
+              ['Email', '718888@student.cityofbristol.ac.uk'],
             ] as [string, string][]
           ).map(([k, v], i, arr) => (
             <div
