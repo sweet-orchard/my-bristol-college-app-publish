@@ -7,6 +7,7 @@ export function LoginPage({ onLogin }: { onLogin: () => void }) {
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+  const [showForgotMsg, setShowForgotMsg] = useState(false);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -25,15 +26,18 @@ export function LoginPage({ onLogin }: { onLogin: () => void }) {
   };
 
   return (
-    <div style={{
-      display: 'flex',
-      flexDirection: 'column',
-      height: '100%',
-      background: `linear-gradient(160deg, ${T.plumDk} 0%, ${T.plum} 55%, ${T.plumLt} 100%)`,
-      padding: '24px',
-      position: 'relative',
-      overflow: 'hidden',
-    }}>
+    <div 
+      className="login-page-container"
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        height: '100%',
+        background: `linear-gradient(160deg, ${T.plumDk} 0%, ${T.plum} 55%, ${T.plumLt} 100%)`,
+        padding: '24px',
+        position: 'relative',
+        overflow: 'hidden',
+      }}
+    >
       {/* Top ribbon decoration */}
       <svg
         viewBox="0 0 393 200"
@@ -143,10 +147,30 @@ export function LoginPage({ onLogin }: { onLogin: () => void }) {
           </div>
 
           <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
-            <span style={{ fontSize: 13, fontWeight: 600, color: T.cyan, cursor: 'pointer', opacity: 0.9 }}>
+            <span 
+              onClick={() => setShowForgotMsg(!showForgotMsg)}
+              style={{ fontSize: 13, fontWeight: 600, color: T.cyan, cursor: 'pointer', opacity: 0.9 }}
+            >
               Forgot password?
             </span>
           </div>
+
+          {showForgotMsg && (
+            <div 
+              style={{ 
+                background: 'rgba(255,255,255,0.12)', 
+                color: '#fff', 
+                padding: '12px 16px', 
+                borderRadius: 12, 
+                fontSize: 13, 
+                lineHeight: 1.4,
+                animation: 'splashSub 0.3s ease both',
+                borderLeft: `4px solid ${T.cyan}`
+              }}
+            >
+              Please visit the Student Hub or contact reception to reset your password.
+            </div>
+          )}
 
           <button 
             type="submit"

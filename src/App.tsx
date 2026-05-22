@@ -31,6 +31,23 @@ export default function App() {
   const [tabletOrientation, setTabletOrientation] = useState<"landscape" | "portrait">("landscape");
   const [isDesktop, setIsDesktop] = useState(window.innerWidth > 800);
 
+  // Global Accessibility Settings synced with LocalStorage
+  const [largeText, setLargeText] = useState(() => localStorage.getItem("cob-large-text") === "true");
+  const [contrast, setContrast] = useState(() => localStorage.getItem("cob-contrast") === "true");
+  const [darkMode, setDarkMode] = useState(() => localStorage.getItem("cob-dark-mode") === "true");
+
+  useEffect(() => {
+    localStorage.setItem("cob-large-text", String(largeText));
+  }, [largeText]);
+
+  useEffect(() => {
+    localStorage.setItem("cob-contrast", String(contrast));
+  }, [contrast]);
+
+  useEffect(() => {
+    localStorage.setItem("cob-dark-mode", String(darkMode));
+  }, [darkMode]);
+
   useEffect(() => {
     const handleResize = () => setIsDesktop(window.innerWidth > 800);
     window.addEventListener("resize", handleResize);
@@ -78,7 +95,18 @@ export default function App() {
     if (tab === "timetable") return <TimetableTab />;
     if (tab === "insights") return <InsightsTab />;
     if (tab === "tools") return <ToolsTab onSelect={setSelectedTool} />;
-    if (tab === "profile") return <ProfileTab onSignOut={() => setIsLoggedIn(false)} />;
+    if (tab === "profile")
+      return (
+        <ProfileTab
+          onSignOut={() => setIsLoggedIn(false)}
+          largeText={largeText}
+          setLargeText={setLargeText}
+          contrast={contrast}
+          setContrast={setContrast}
+          darkMode={darkMode}
+          setDarkMode={setDarkMode}
+        />
+      );
     return null;
   };
 
@@ -243,10 +271,44 @@ export default function App() {
         button { font-family: 'Poppins','Segoe UI',sans-serif; }
         input, textarea { font-family: 'Poppins','Segoe UI',sans-serif; }
         @keyframes fadeInUp { from { opacity:0; transform:translateY(8px) } to { opacity:1; transform:translateY(0) } }
+
+        /* Global Accessibility CSS Overrides */
+        .large-text {
+          zoom: 1.14;
+          -moz-transform: scale(1.14);
+          -moz-transform-origin: top center;
+        }
+        
+        .high-contrast {
+          filter: contrast(1.4) saturate(1.15) !important;
+        }
+        .high-contrast * {
+          text-shadow: none !important;
+          box-shadow: none !important;
+        }
+        
+        .dark-mode {
+          filter: invert(0.95) hue-rotate(180deg) !important;
+          background: #121212 !important;
+        }
+        
+        /* Double invert logic for preserving images, signature branding, and high contrast buttons */
+        .dark-mode img,
+        .dark-mode .logo-compact,
+        .dark-mode .login-page-container,
+        .dark-mode .splash-screen-container {
+          filter: invert(1) hue-rotate(180deg) !important;
+        }
+        
+        .dark-mode .quick-action-btn span,
+        .dark-mode .quick-action-icon-wrapper {
+          filter: invert(1) hue-rotate(180deg) !important;
+        }
       `}</style>
 
       {/* Main app container */}
       <div
+        className={`${largeText ? "large-text" : ""} ${contrast ? "high-contrast" : ""} ${darkMode ? "dark-mode" : ""}`}
         style={{
           flex: 1,
           display: "flex",
@@ -257,6 +319,7 @@ export default function App() {
           maxWidth: "100%",
           margin: "0 auto",
           background: T.card,
+          transition: "filter 0.3s ease, background-color 0.3s ease",
         }}
       >
         {/* Splash screen */}

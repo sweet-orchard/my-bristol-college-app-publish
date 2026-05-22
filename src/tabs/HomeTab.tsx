@@ -25,6 +25,77 @@ export const HomeTab = ({
   return (
     <div style={{ height: '100%', overflowY: 'auto', background: T.bg }}>
       <style>{`
+        .quick-actions-grid {
+          display: flex;
+          gap: 8px;
+          margin-bottom: 16px;
+          width: 100%;
+        }
+        .quick-action-btn {
+          background: var(--bg);
+          border: none;
+          border-radius: 16px;
+          padding: 14px 4px;
+          cursor: pointer;
+          font-family: inherit;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          gap: 12px;
+          box-shadow: 0 4px 12px rgba(69,0,32,0.12);
+          transition: transform 0.15s, box-shadow 0.15s;
+          text-align: center;
+          flex: 1;
+          min-width: 0;
+        }
+        .quick-action-btn:active {
+          transform: scale(0.95);
+        }
+        .quick-action-icon-wrapper {
+          width: 32px;
+          height: 32px;
+          border-radius: 10px;
+          background: rgba(255,255,255,0.3);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+        .quick-action-btn span {
+          font-size: 9px;
+          font-weight: 800;
+          color: #fff;
+          line-height: 1.2;
+          text-align: center;
+          width: 100%;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
+        @container (min-width: 500px) {
+          .quick-actions-grid {
+            gap: 12px;
+          }
+          .quick-action-btn {
+            padding: 18px 14px;
+            align-items: flex-start;
+            text-align: left;
+            gap: 24px;
+            border-radius: 20px;
+            flex: 1;
+          }
+          .quick-action-icon-wrapper {
+            width: 38px;
+            height: 38px;
+            border-radius: 12px;
+          }
+          .quick-action-btn span {
+            font-size: 12px;
+            text-align: left;
+            white-space: normal;
+            overflow: visible;
+            text-overflow: clip;
+          }
+        }
         .dashboard-grid {
           display: flex;
           flex-direction: column;
@@ -499,15 +570,7 @@ export const HomeTab = ({
 
         {/* Quick actions */}
         <SecHead title="Quick Actions" />
-        <div
-          style={{
-            display: 'flex',
-            gap: 10,
-            overflowX: 'auto',
-            paddingBottom: 8,
-            marginBottom: 16,
-          }}
-        >
+        <div className="quick-actions-grid">
           {[
             {
               i: 'warn' as IconName,
@@ -537,45 +600,15 @@ export const HomeTab = ({
             <button
               key={i}
               onClick={q.a}
+              className="quick-action-btn"
               style={{
-                flexShrink: 0,
                 background: q.c,
-                border: 'none',
-                borderRadius: 20,
-                padding: '18px 14px',
-                cursor: 'pointer',
-                fontFamily: 'inherit',
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'flex-start',
-                gap: 24,
-                width: 130,
-                boxShadow: `0 4px 16px rgba(69,0,32,0.15)`,
-                transition: 'transform 0.15s',
               }}
             >
-              <div
-                style={{
-                  width: 38,
-                  height: 38,
-                  borderRadius: 12,
-                  background: 'rgba(255,255,255,0.3)',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                }}
-              >
+              <div className="quick-action-icon-wrapper">
                 <Ic n={q.i} size={20} c="#fff" sw={2.2} />
               </div>
-              <span
-                style={{
-                  fontSize: 12,
-                  fontWeight: 800,
-                  color: '#fff',
-                  lineHeight: 1.3,
-                  textAlign: 'left',
-                }}
-              >
+              <span>
                 {q.label}
               </span>
             </button>

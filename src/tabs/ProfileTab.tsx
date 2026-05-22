@@ -5,10 +5,23 @@ import { RibbonProfile } from "../components/shared/Ribbon";
 import { T } from "../theme/tokens";
 
 
-export const ProfileTab = ({ onSignOut }: { onSignOut?: () => void }) => {
-  const [darkMode, setDark] = useState(false);
-  const [largeText, setLarge] = useState(false);
-  const [contrast, setContrast] = useState(false);
+export const ProfileTab = ({
+  onSignOut,
+  largeText = false,
+  setLargeText,
+  contrast = false,
+  setContrast,
+  darkMode = false,
+  setDarkMode,
+}: {
+  onSignOut?: () => void;
+  largeText?: boolean;
+  setLargeText?: (v: boolean | ((prev: boolean) => boolean)) => void;
+  contrast?: boolean;
+  setContrast?: (v: boolean | ((prev: boolean) => boolean)) => void;
+  darkMode?: boolean;
+  setDarkMode?: (v: boolean | ((prev: boolean) => boolean)) => void;
+}) => {
   const [lang, setLang] = useState('English');
   const LANGS = ['English', 'Welsh', 'Arabic', 'Somali', 'Polish', 'Urdu'];
 
@@ -140,7 +153,7 @@ export const ProfileTab = ({ onSignOut }: { onSignOut?: () => void }) => {
                 width: 36,
                 height: 36,
                 borderRadius: 11,
-                background: T.blue + '66',
+                background: T.cyan + '44',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
@@ -156,25 +169,25 @@ export const ProfileTab = ({ onSignOut }: { onSignOut?: () => void }) => {
             {
               label: 'Large Text',
               val: largeText,
-              set: setLarge,
+              set: setLargeText || (() => {}),
               desc: 'Increases font size throughout app',
               icon: 'sun' as IconName,
             },
             {
               label: 'High Contrast',
               val: contrast,
-              set: setContrast,
+              set: setContrast || (() => {}),
               desc: 'WCAG AA contrast ratio compliance',
               icon: 'shield' as IconName,
             },
             {
               label: 'Dark Mode',
               val: darkMode,
-              set: setDark,
+              set: setDarkMode || (() => {}),
               desc: 'Reduces eye strain in low light',
               icon: 'moon' as IconName,
             },
-          ].map((o) => (
+          ].map((o, idx, arr) => (
             <div
               key={o.label}
               style={{
@@ -182,7 +195,7 @@ export const ProfileTab = ({ onSignOut }: { onSignOut?: () => void }) => {
                 alignItems: 'center',
                 justifyContent: 'space-between',
                 padding: '11px 0',
-                borderBottom: `1px solid ${T.border}`,
+                borderBottom: idx < arr.length - 1 ? `1px solid ${T.border}` : 'none',
               }}
             >
               <div style={{ display: 'flex', alignItems: 'center', gap: 11 }}>
@@ -211,43 +224,57 @@ export const ProfileTab = ({ onSignOut }: { onSignOut?: () => void }) => {
               <Toggle on={o.val} onToggle={() => o.set((v: boolean) => !v)} />
             </div>
           ))}
-          <div style={{ paddingTop: 14 }}>
+        </Card>
+
+        {/* Language */}
+        <Card>
+          <div
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              gap: 8,
+              marginBottom: 14,
+            }}
+          >
             <div
               style={{
+                width: 36,
+                height: 36,
+                borderRadius: 11,
+                background: T.purple + '44',
                 display: 'flex',
                 alignItems: 'center',
-                gap: 8,
-                marginBottom: 9,
+                justifyContent: 'center',
               }}
             >
-              <Ic n="globe" size={15} c={T.plum} />
-              <span style={{ fontWeight: 700, color: T.plum, fontSize: 13 }}>
-                Language
-              </span>
+              <Ic n="globe" size={18} c={T.plum} />
             </div>
-            <div style={{ display: 'flex', flexWrap: 'wrap', gap: 7 }}>
-              {LANGS.map((l) => (
-                <button
-                  key={l}
-                  onClick={() => setLang(l)}
-                  style={{
-                    padding: '6px 13px',
-                    borderRadius: 99,
-                    fontFamily: 'inherit',
-                    border: `1.5px solid ${l === lang ? T.plum : T.border}`,
-                    background: l === lang ? T.plum : T.card,
-                    color: l === lang ? '#fff' : T.plum,
-                    fontSize: 12,
-                    fontWeight: 700,
-                    cursor: 'pointer',
-                    transition: 'all 0.15s',
-                    boxShadow: l === lang ? `0 2px 8px ${T.plum}33` : 'none',
-                  }}
-                >
-                  {l}
-                </button>
-              ))}
-            </div>
+            <span style={{ fontWeight: 900, color: T.plum, fontSize: 16 }}>
+              Language
+            </span>
+          </div>
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: 7 }}>
+            {LANGS.map((l) => (
+              <button
+                key={l}
+                onClick={() => setLang(l)}
+                style={{
+                  padding: '6px 13px',
+                  borderRadius: 99,
+                  fontFamily: 'inherit',
+                  border: `1.5px solid ${l === lang ? T.plum : T.border}`,
+                  background: l === lang ? T.plum : T.card,
+                  color: l === lang ? '#fff' : T.plum,
+                  fontSize: 12,
+                  fontWeight: 700,
+                  cursor: 'pointer',
+                  transition: 'all 0.15s',
+                  boxShadow: l === lang ? `0 2px 8px ${T.plum}33` : 'none',
+                }}
+              >
+                {l}
+              </button>
+            ))}
           </div>
         </Card>
 

@@ -10,6 +10,7 @@ export const SplashScreen = ({ onDone }: { onDone: () => void }) => {
 
   return (
     <div
+      className="splash-screen-container"
       style={{
         position: 'absolute',
         inset: 0,

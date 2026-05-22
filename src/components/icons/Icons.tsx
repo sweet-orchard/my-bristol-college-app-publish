@@ -45,7 +45,8 @@ export type IconName =
   | 'zap'
   | 'trend'
   | 'clock'
-  | 'layout';
+  | 'layout'
+  | 'bulb';
 
 export const Ic = ({
   n,
@@ -72,6 +73,13 @@ export const Ic = ({
     strokeLinejoin: 'round' as const,
   };
   const set: Record<string, React.ReactNode> = {
+    bulb: (
+      <svg style={s} viewBox="0 0 24 24">
+        <path {...p} d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A5 5 0 0 0 8 8c0 1 .3 2.2 1.5 3.5.7.7 1.3 1.5 1.5 2.5" />
+        <line {...p} x1="9" y1="18" x2="15" y2="18" />
+        <line {...p} x1="10" y1="22" x2="14" y2="22" />
+      </svg>
+    ),
     home: (
       <svg style={s} viewBox="0 0 24 24">
         <path {...p} d="M3 9.5L12 3l9 6.5V20a1 1 0 01-1 1H5a1 1 0 01-1-1z" />

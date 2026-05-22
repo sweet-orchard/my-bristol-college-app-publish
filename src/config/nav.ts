@@ -8,7 +8,7 @@ export const NAV = [
   {
     id: 'insights',
     label: 'Insights',
-    icon: 'compass' as IconName,
+    icon: 'bulb' as IconName,
     ac: T.lilac,
   },
   { id: 'tools', label: 'Tools', icon: 'wrench' as IconName, ac: T.lemon },
